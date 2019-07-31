@@ -1,0 +1,22 @@
+Docker compose es el que se debe de usar cuando necesitamos correr aplicaciones mas compleja, entonces de esta forma podemos decir que docker normal lo utilizamos para las aplicaciones simples. Por regla general cada contenedor solo debe de encargarse de proveer un solo servicio, osea que si tenemos una aplicacion con 2 servicio cada uno de esto debe de estar en 2 contenedores separados, pero debe de tener una forma de poder comunicarse entre si. 
+
+El mejor ejemplo para definir esto es cuando tenemos una aplicacion en java que depende de la base de datos mysql(mariadb), entonces en un contenedor vamos a tener la aplicacion corriendo con openjdk y en el otro contenedor tendremos a mariadb haciendo de base de datos para nuestra aplicacion y todo esto debe de ser configurado mediante docker-compose.
+
+
+Notas de la configuracion del archivo docker-compose:
+
+Paso 1: Lo primero especificamos la version del archivo de docker-compose con el que estaremos trabajando
+
+version: '3'
+
+
+Paso 2: Aqui nos encargamos de espeficar los servicios que estaremos trabajando, le podemos poner cualquier nombre
+
+service:
+	application-service:
+
+	Ahora en build le especificamos el path de donde estara nuestro servicio, el path se toma como referencia el lugar donde esta nuestro archivo docker-compose.yml
+		build:
+
+
+database-service

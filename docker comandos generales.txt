@@ -1,0 +1,42 @@
+Notas de docker clase del profesor camacho
+
+
+docker container ls: Muestra un listado de todos los contenedores que tengo en ejecucion
+
+
+docker ps: hace lo mismo que container ls
+
+
+docker kill container-id: este comando sirve para detener un contenedor que se esta ejecutando
+
+
+docker run --name prueba -d -it ubuntu: Este comando sirve para crear un contenedor llamado prueba con la imagen ubuntu el -d sirve para correr esto como proceso
+
+
+docker container attach prueba: Esto sirve para poder acceder al bash del equipo. Si salgo con el comando exit se detendra el contenedor. (utilizar la combinación crtl + pq, para salir sin detener el contenedor).
+ 
+
+docker container commit nombredelcontenedor maquina-con-apache: Esto sirve para crear una imagen del contenedor que tengo hecho
+
+
+docker run --name ubuntu-web -d -it -p 80:80 ahora a subir el contenedor que acabo de subir pero en el puerto 8080
+
+
+
+docker container start prueba: Arrancar un contenedor ya antes creado
+
+
+importante
+Tambien se usa -f ver las diferencias
+
+
+docker build -t nombre-imagen ruta_dockerfile .: Archivo que permite la creación de las imágenes con una gran cantidad de
+opciones 
+
+
+docker login -u username: aqui me puedo loguear en docker
+
+
+docker push kerxd/bo-sparkjava: para hacer push a nuestra imagen personalizada a un repositorio
+
+

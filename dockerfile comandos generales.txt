@@ -1,0 +1,31 @@
+FROM: Imagen base de donde partimos para crear nuestra nueva imagen. 
+
+
+● LABEL: Metadata de la imagen, vendedor, versión, entre otras. 
+
+
+● MAINTAINER: Quien mantiene la imagen, persona o grupo. (deprecated) 
+
+
+● RUN: Ejecuta un comando o instrucción dentro del contenedor.
+
+ 
+ ● ADD: Añade un fichero de la máquina host a la imagen y permite consultas a URL. 
+
+ 
+ ● COPY: Permite agregar archivos del host a la imagen. ● ENV: Crear variables de ambiente en el contenedor. 
+
+ 
+ ● EXPOSE: Indica los puertos que estaremos permitiendo conexión al contenedor. 
+
+ 
+ ● ENTRYPOINT: Indica el proceso a ejecutar. 
+
+
+ ● CMD: Son los parámetros del proceso a ejecutar.
+
+
+ ● WORKDIR: Indica el directorio donde se estarán ejecutando las instrucción cd RUN, CMD, ENTRYPOINT y COPY. 
+
+
+ ● VOLUME: Permite crear un punto de montaje externo al contenedor, se utiliza para persistir la información generada por los contenedores.

@@ -1,0 +1,79 @@
+Pasos para usar docker en una aplicacion de java en springboot
+
+
+Paso 1: Generar el jar de la aplicacion, para hacer esto con gradle solo debo hacer doble click en bootjar
+y este se generara en la carpeta build/libs 
+
+Paso 2: Agregar el archivo Dockerfile al proyecto, intellijidea de una vez lo detectara
+
+
+Paso 3: Configurar el Dockerfile 
+
+Paso 3.1: En primer lugar como correremos un proyecto java la imagen que debemos de poner en el Dokerfile
+debe de ser de java y para hacer esto es una opcion bajar la imagen oficial de java, pero lo mas recomendable
+es bajar la imagen de openjdk que la obtuvimos de dockerhub que es donde podemos obtener todo tipo de imagenes y este es el link exacto de openjdk https://hub.docker.com/_/openjdk Esta es la imagen para correr proyectos java por defecto entonces por lo tanto
+el from tendra lo siguiente
+
+FROM openjdk
+
+
+
+Paso 3.2: Indicar de donde obtendremos el jar para esto utilizamos el comando ADD seguido del path donde se encuentra nuestro jar
+y lo copiamos al directorio que deseemos que en este caso  no lo copiaremos a un directorio en especifico, asi que por lo tanto
+solo ponemos el nombre del jar dos veces 
+
+ADD build/libs/docker-0.0.1-SNAPSHOT.jar docker-0.0.1-SNAPSHOT.jar
+
+
+Paso 3.3: En este paso debemos de exponer la aplicacion en el puerto que deseemos, para que podamos acceder desde este
+en este caso expondre en 8080
+
+EXPOSE 8080
+
+
+Paso 3.4: Este paso es importantisimo, pues basicamente aqui se declara el comando o los comandos basico, para que el
+docker ejecute nuestro jar automaticamente, lo unico que hay que tener en cuenta es que en vez de separar los comandos por espacio
+en entrypoint usamos coma y ademas todo el texto va entre "". Pues lo que hacemos aqui es basicamente configurar el contenedor
+para que haga automaticamente el comando java -jar docker-0.0.1-SNAPSHOT.jar, pues este comando es el necesario para que nuestro jar se ejecute
+
+ENTRYPOINT ["java", "-jar", "docker-0.0.1-SNAPSHOT.jar"]
+
+
+Paso 4: Build la imagen de docker mediante el Dockerfile que hemos configurado hacemos esto utilizando el comando docker build
+y a este comando le indicamos el nombre que tendra nuestra imagen y el lugar donde esta ubicada como estamos trabajando en el mismo sitio que la imagen solo debemos de poner un punto
+
+docker build -t docker-spring-boot .
+
+Paso 5: Ejecutar la imagen del contenedor que acabamos de crear estableciendo los puertos de entrada y de salida que sean iguales al puerto que expusimos en el docker file
+
+
+docker run -p 8080:8080 docker-spring-boot 
+
+
+Paso 6: entrar a la aplicacion que esta corriendo mediante el contenedor desde la url localhost:8080 y asi comprobamos que todo esta corriendo de forma correcta
+
+
+Paso 7: lo siguiente es hacer login en docker para asi poder acceder a mis repositorios y hacer push a las imagenes que yo desee y para hacer esto utilizamos el siguiente comando:
+
+
+docker login -u nombredeusuario
+
+
+Paso 8: Hacer commit a la imagen, para hacer esto utilizamos docker container commit y le agregamos el nombre del contenedor que dice al final cuando usamos docker ps, no se debe de confundir el nombre del contenedor con el nombre de la imagen pues son dos cosas diferente
+y finalmente le pondremos el nombre que tendra nuestro contenedor, ademas de que se debe de poner tu username de docker y luego el nombre de la imagen sino dara error a la hora de hacer push
+
+
+docker container commit nombredelcontenedor kerxd/docker-spring-boot
+
+
+
+Paso 9: Ponerle un tag a tu nueva imagen, esto es recomendable ya que sirve de identificador en el repositorio y se hace de esta forma
+esto a veces falla, pero es algo opcional asi que siempre se puede saltar a hacer el push directamente
+
+
+docker tag primeraimagen kerxd/docker-spring-boot
+
+
+Paso 10: Luego de esto podemos hacer push a esta imagen para que asi de esta forma las demas personas puedan acceder a esta y descargarla y hacemos esto de la siguiente forma quitar :primeraimagen sino se hizo el paso anterior
+
+docker push kerxd/docker-spring-boot:primeraimagen

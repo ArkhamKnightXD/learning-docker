@@ -1,0 +1,38 @@
+Ejemplo de docker completo utilizando php
+
+Aqui creare un docker con servidor para que ejecute el archivo php, tambien creare un dockerfile para que todo esto sea posible, y indicare cuales son los pasos para hacer esto
+
+
+
+1: El primer paso es crear el dockerfile
+
+comandos que contienen el Dockerfile
+
+FROM php:7.0-apache: Aqui indicamos cual sera la imagen de base para nuestro docker, que aqui sera php 7.0 con apache, que es una oficial para php, si desearamos agregar nuestra propia imagen aqui es que se indica
+
+
+COPY src/ /var/www/html: Aqui indicamos que copiaremos el contenido de la carpeta src osea el archivo php hacia /var/www/html 
+
+
+EXPOSE 80: Aqui indicaremos que la aplicacion sera accesible desde el puerto 80
+
+
+2: El siguiente paso es el de build el dockerfile, para hacer esto nos movemos mediante consola hacia donde esta el dockerfile y ejecutamos el comando:
+
+docker build -t "aplication-name" "location-file" , si estamos en la misma carpeta solo debemos de poner un . para este ejemplo utilizare estos valores
+
+docker build -t hello-world .
+
+luego de esto nos descargara todo lo necesario para hacer este proceso, ademas de que copiara nuestro archivo hacia var/www/html para que se empiece a ejecutar en el docker y por ultimo exponer la aplicacion en el puerto 80
+
+
+3: El siguiente paso es que ya que nuestra imagen esta creada con php, lo que debemos de hacer es ejecutarla y para eso utilizamos el siguiente comando:
+
+docker run -p 80:80 hello-world
+
+Con esto corremos la imagen e indicamos con - que cuando accedamos mediante localhost seamos redireccionados al contenedor con la aplicacion ejecutandose y viendo su funcionamiento. 
+
+
+y listo ahora si desearamos cambiar la aplicacion y que esto se reflejara en el docker debemos de recompilar el Dockerfile y hacer el proceso de nuevo
+
+Fin.
