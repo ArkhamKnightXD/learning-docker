@@ -3,6 +3,20 @@ Docker compose es el que se debe de usar cuando necesitamos correr aplicaciones 
 El mejor ejemplo para definir esto es cuando tenemos una aplicacion en java que depende de la base de datos mysql(mariadb), entonces en un contenedor vamos a tener la aplicacion corriendo con openjdk y en el otro contenedor tendremos a mariadb haciendo de base de datos para nuestra aplicacion y todo esto debe de ser configurado mediante docker-compose.
 
 
+La indentacion en el archivo docker-compose es importante, pues una falla de indentacion puede causar error en el archivo
+
+Los comandos basicos de docker compose son estos:
+
+
+docker compose up -d: Este comando sirve para iniciar todos los servicios
+
+
+docker compose down: Este comando sirve para detener todos los servicios en ejecucion
+
+
+docker compose config: Verifica que el archivo docker-compose.yml no tenga errores.
+
+
 Notas de la configuracion del archivo docker-compose:
 
 Paso 1: Lo primero especificamos la version del archivo de docker-compose con el que estaremos trabajando

@@ -10,6 +10,11 @@ docker ps: hace lo mismo que container ls
 docker kill container-id: este comando sirve para detener un contenedor que se esta ejecutando
 
 
+docker rmi id o repository: este comando sirve para eliminar las imagenes que deseemos solo debemos especificarle el id o el repo de la imagen
+
+docker stop container-name: Este hace lo mismo que el docker kill, la unica diferencia es que con este solo de bemos de indicar el nombre del contenedor y no el id y esto hace que este comando sea mas conveniente que docker kill
+
+
 docker run --name prueba -d -it ubuntu: Este comando sirve para crear un contenedor llamado prueba con la imagen ubuntu el -d sirve para correr esto como proceso
 
 

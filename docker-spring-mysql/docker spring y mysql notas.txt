@@ -1,0 +1,31 @@
+Notas sobre como correr un proyecto spring boot que dependa de una base de datos mysql, aqui ya tenemos generado nuestro jar y lo unico que debemos de hacer es linkear la aplicacion con el contenedor de my sql
+
+
+Paso 1: tener bajada la imagen de Mysql hacemos esto con este comando:
+
+docker pull mysql
+
+
+Paso 2: Ya que tenemos la imagen debemos ejecutarla definiendo ciertas configuraciones como lo que seran el usuario, password y nombre de la base de datos y lo hacemos con este comando:
+
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:5.6
+
+
+Paso 3: Luego de esto nos vamos al application properties de nuestro proyecto spring boot y modificamos los datos relacionados a la base de datos con estos:
+
+
+spring.datasource.url=jdbc:mysql://mysql-standalone:3306/test
+spring.datasource.username=sa
+spring.datasource.password=password
+
+
+Paso 4: Compilar el jar y realizar el mismo proceso de siempre de hacer una imagen de la aplicacion mediante el dockerfile
+este seria el comando
+
+docker build -t docker-spring-mysql .
+
+
+
+Paso 5: Correr la imagen ya creada de la aplicacion utilizando una opcion extra llamada --link este seria el comando
+
+ docker run -p 8080:8080 --name docker-spring-mysql --link mysql-standalone:mysql -d docker-spring-mysql

@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  web:
+    image: docker-spring-mysql
+
+    networks:
+      - spring-mysql
+
+    ports:
+      - 8080:8080
+
+    depends_on:
+      - database
+
+  database:
+    image: mysql
+
+    networks:
+      - spring-mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test 
+      MYSQL_USER: sa 
+      MYSQL_PASSWORD: password
+
+networks:
+  spring-mysql:
