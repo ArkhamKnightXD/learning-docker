@@ -2,29 +2,27 @@ version: '3'
 
 services:
 
-  web:
-    image: docker-spring-mysql
+  spring-boot:
+    image: docker-spring-mysql2
 
     networks:
-      - spring-mysql
+      - mysql-network
 
     ports:
-      - 8080:8080
+      - "8080:8080"
 
     depends_on:
-      - database
+      - mysqldb1
 
-  database:
-    image: mysql
+  mysqldb1:
+    image: mysql:8
 
     networks:
-      - spring-mysql
+      - mysql-network
 
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: test 
-      MYSQL_USER: sa 
-      MYSQL_PASSWORD: password
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb  
 
 networks:
-  spring-mysql:
+  mysql-network:

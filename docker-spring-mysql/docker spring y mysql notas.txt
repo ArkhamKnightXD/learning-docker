@@ -29,3 +29,9 @@ docker build -t docker-spring-mysql .
 Paso 5: Correr la imagen ya creada de la aplicacion utilizando una opcion extra llamada --link este seria el comando
 
  docker run -p 8080:8080 --name docker-spring-mysql --link mysql-standalone:mysql -d docker-spring-mysql
+
+
+
+
+
+
