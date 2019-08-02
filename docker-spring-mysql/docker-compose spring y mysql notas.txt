@@ -46,20 +46,20 @@ Paso 3: hacer el jar de la aplicacion
 
 paso 4: hacer el contenedor de nuestra aplicacion springboot mediante el jar que acabamos de crear con el comando:
 
-docker build -t docker-spring-mysql2 .
+docker build -t spring-practic4 .
 
 
 Paso 5: probar que la conexion entre ambos contenedores este correcta y la aplicacion de esta forma suba de forma correcta para esto utilizamos estos comandos:
 
 
-tener en cuenta que se debe de cambiar el nombre de la red y de la base de datos si vamos a usar esto en otro contenedor
+tener en cuenta que se debe de cambiar el nombre de la red y de la base de datos si vamos a usar esto en otro contenedor 
 
-docker container run --name mysqldb1 --network mysql-network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=bootdb -d mysql:8
+docker container run --name mysqldb3 --network practica4-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=practica4 -d mysql:8
 
 
-aqui especificamos dos nombres el primero sera el nombre que tendra el contenedor y el del final el nombre de nuestra imagen es necesario ponerlos diferentes ya que aveces si se ponen iguales puede dar errores 
+aqui especificamos dos nombres el primero sera el nombre que tendra el contenedor y el del final el nombre de nuestra imagen es necesario ponerlos diferentes ya que aveces si se ponen iguales puede dar errores, nota importante se debe espera por lo menos 4 min antes de ejecutar este comando para que de esta forma estar seguros que el contenedor de la base de datos subio de forma correcta.
 
- docker container run --network mysql-network --name docker-spring-mysql2-XD -p 8080:8080 -d docker-spring-mysql2
+ docker container run --network practica4-mysql --name docker-spring-mysql-practica4 -p 8080:8080 -d spring-mysql-practica4
 
 
 
@@ -99,3 +99,12 @@ services:
 
 networks:
   mysql-network:
+
+
+
+Paso 7: Ejecutar el comando el docker-compose up para inicializar la aplicacion, importante este proceso debe de hacer dos veces la primera vez:
+
+en el primer proceso la aplicacion nos dara error, pero no hsy problema con esto, pues debemos de dejar llegar este proceso hasta el final para que la base de datos se inicialice luego de que llegue al final presionamos ctrl +c y ejecutamos de nuevo el comando docker-compose up y listo la aplicacion iniciara de forma normal
+
+
+

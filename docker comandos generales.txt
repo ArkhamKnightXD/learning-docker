@@ -15,6 +15,7 @@ docker rmi id o repository: este comando sirve para eliminar las imagenes que de
 docker stop container-name: Este hace lo mismo que el docker kill, la unica diferencia es que con este solo de bemos de indicar el nombre del contenedor y no el id y esto hace que este comando sea mas conveniente que docker kill
 
 
+
 docker run --name prueba -d -it ubuntu: Este comando sirve para crear un contenedor llamado prueba con la imagen ubuntu el -d sirve para correr esto como proceso
 
 
@@ -45,3 +46,29 @@ docker login -u username: aqui me puedo loguear en docker
 docker push kerxd/bo-sparkjava: para hacer push a nuestra imagen personalizada a un repositorio
 
 
+extra para remover un contenedor utilizamos esto
+
+
+docker ps -a
+
+step 2:
+
+docker rm name_of_the_docker_container
+
+
+para detener todos los contenedores
+
+docker stop $(docker ps -a -q)
+
+
+
+para eliminar todos los contenedores
+docker rm $(docker ps -a -q)
+
+
+para eliminar todo lo que no este usando
+
+docker system prune 
+
+para eliminar todo
+docker system prune -a
