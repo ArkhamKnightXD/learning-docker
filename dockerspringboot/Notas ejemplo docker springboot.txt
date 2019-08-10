@@ -77,3 +77,9 @@ docker tag primeraimagen kerxd/docker-spring-boot
 Paso 10: Luego de esto podemos hacer push a esta imagen para que asi de esta forma las demas personas puedan acceder a esta y descargarla y hacemos esto de la siguiente forma quitar :primeraimagen sino se hizo el paso anterior
 
 docker push kerxd/docker-spring-boot:primeraimagen
+
+
+
+Paso 11: si deseamos bajar esta misma imagen utilizamos
+
+docker pull kerxd/docker-php
